@@ -4,7 +4,14 @@ define(['require', 'oxjs'], function(require, OXJS) {
 		//document.head.getElementsByTagName('link');
 		var link = document.querySelector('link[rel="Shortcut Icon"]');
 		return link && link.href;
-	}
+	},
+	getContentImg=function(){
+		var img=$('img')[0];
+		if(img){
+			return img.src
+		}
+		return getShortcutIcon();
+	};
 
 	return {
 		init: function($mod) {
@@ -12,7 +19,7 @@ define(['require', 'oxjs'], function(require, OXJS) {
 			setTimeout(function() {
 				var shareData = {
 					title: $mod.attr('data-title') || document.title,
-					img: $mod.attr('data-img') || (OXJS.queryString('_id') ? $('img')[0].src : getShortcutIcon())
+					img: $mod.attr('data-img') || (OXJS.queryString('_id') ? getContentImg() : getShortcutIcon())
 				};
 				require(['https://res.wx.qq.com/open/js/jweixin-1.2.0.js'], function(wx) {
 					_this.config(wx, wxconfig, shareData);
