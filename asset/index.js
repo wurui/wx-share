@@ -25,7 +25,7 @@ define(['require', 'oxjs'], function(require, OXJS) {
 					_this.config(wx, wxconfig, shareData);
 				})
 			}, 3000);
-			$.getJSON('/_tool/getwxconfig?url=' + encodeURIComponent(location.href) + '&callback=?', function(r) {
+			$.getJSON('/_tool/getwxconfig?url=' + encodeURIComponent(location.href), function(r) {
 				wxconfig = r;
 				//alert(JSON.stringify(r))
 			})
